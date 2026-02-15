@@ -1,0 +1,220 @@
+:root {
+    --bg: #fafafa;
+    --text: #1a1a1a;
+    --accent: #0056b3;
+    /* UNSW Blue feel */
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.dark-mode {
+    --bg: #0d0d0d;
+    --text: #ffffff;
+    --accent: #ff4655;
+    /* Valorant Red */
+    --card-bg: #1a1a1a;
+    --card-shadow: rgba(255, 70, 85, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    padding: 0 8vw;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Navigation */
+nav {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 2rem;
+    font-size: 0.9rem;
+}
+
+/* Hero */
+.hero-container {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+h1 span {
+    color: var(--accent);
+}
+
+/* LARGE SWITCH */
+.toggle-wrapper {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ddd;
+    transition: .4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    left: 5px;
+    bottom: 5px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #333;
+}
+
+input:checked+.slider:before {
+    transform: translateX(50px);
+    background-color: var(--accent);
+}
+
+/* Counter */
+.counter-container {
+    text-align: center;
+    margin: 2rem auto 5rem;
+    padding: 3rem;
+    border-radius: 30px;
+    background: var(--card-bg);
+    box-shadow: 0 10px 30px var(--card-shadow);
+    max-width: 600px;
+}
+
+#days-count {
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: -4px;
+    line-height: 1;
+}
+
+.counter-label {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    color: var(--accent);
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 20px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px var(--card-shadow);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Academic Section */
+.academic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 5rem 0;
+    border-top: 1px solid var(--card-shadow);
+}
+
+.column h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 4rem;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .academic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #days-count {
+        font-size: 4rem;
+    }
+}

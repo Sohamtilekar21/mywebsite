@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soham Tilekar — Portfolio</title>
+    <meta name="description"
+        content="Soham Tilekar — Software Engineering student at UNSW. Projects, resume, and a rotating low-poly globe.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;800&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <canvas id="bg-stars" aria-hidden="true"></canvas>
+
+    <nav>
+        <div class="logo">Soham.exe</div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="https://www.linkedin.com/in/soham-tilekar-6b21b2325/" target="_blank" rel="noopener">LinkedIn</a>
+            <div class="resume-wrap">
+                <a href="/resume.pdf" class="resume-link js-resume-download" download>Resume ↓</a>
+                <div class="resume-nudge" aria-hidden="true">
+                    <svg viewBox="0 0 130 100" width="130" height="100" fill="none">
+                        <path d="M92,88 C122,78 112,38 90,24 C76,15 74,9 78,3" stroke="currentColor" stroke-width="3.5"
+                            stroke-linecap="round" />
+                        <path d="M78,3 L66,15 M78,3 L92,17" stroke="currentColor" stroke-width="3.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="resume-nudge-text">Click here!</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-copy">
+            <h1 id="hero-text">Studying Software Engineering at UNSW <span>during the day.</span></h1>
+            <div class="toggle-wrapper">
+                <span class="label">Day</span>
+                <label class="switch">
+                    <input type="checkbox" id="mode-toggle" aria-label="Toggle day and night mode">
+                    <span class="slider"></span>
+                </label>
+                <span class="label">Night</span>
+            </div>
+        </div>
+
+        <div class="globe-stage" id="globe-stage">
+            <!-- location panels -->
+            <div class="loc-panel loc-left" id="panel-syd">
+                <span class="loc-tag">Based in</span>
+                <h3>Sydney, AU</h3>
+                <p>Studying at UNSW — chasing a Software Engineering degree one deadline at a time.</p>
+            </div>
+
+            <canvas id="globe-canvas"></canvas>
+            <svg id="connector-svg"></svg>
+
+            <div class="loc-panel loc-right" id="panel-jpn">
+                <span class="loc-tag">Dream trip</span>
+                <h3>Japan</h3>
+                <p>SYD --> JPN : Mt Fuji, Ramen and Pokemon ?? who can say no to that.</p>
+            </div>
+
+            <p class="globe-hint">Drag to rotate the globe</p>
+        </div>
+    </header>
+
+    <div id="counter-section">
+        <div class="counter-container">
+            <span class="counter-label">Days Survived at UNSW</span>
+            <div id="days-count">000</div>
+        </div>
+    </div>
+
+    <section id="main-content" class="grid"></section>
+
+    <section id="about">
+        <div class="about-inner">
+            <h2>About</h2>
+            <p class="about-lead">Second-year Software Engineering student at UNSW building full-stack apps, debugging
+                low-level code, and tinkering with
+                hardware. When I'm not multi-tasking through hackathons or wiring up robots, you’ll usually find me
+                coaching
+                chess or griding Valorant at 2 AM just to be hardstuck silver.</p>
+            <div class="academic-grid">
+                <div class="column">
+                    <h3>Languages I know</h3>
+                    <p>C, C++, Python, SQL, MIPS, JS(TS)</p>
+                </div>
+                <div class="column">
+                    <h3>Courses completed</h3>
+                    <p>DESN1000, MATH1081, COMP1511</p>
+                    <p>COMP2521, COMP1521, COMP1531</p>
+                    <p>COMP3311, DESN2000, MATH2400</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid" id="project-grid"></div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/soham-tilekar-6b21b2325/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/tilekarsoham/" target="_blank" rel="noopener">Instagram</a>
+            <a href="/resume.pdf" class="js-resume-download" download>Resume</a>
+        </div>
+        <p>&copy; 2026 | Built for the 24/7 Grind</p>
+    </footer>
+
+    <div class="captcha-overlay" id="captcha-overlay" aria-hidden="true">
+        <div class="captcha-modal" role="dialog" aria-modal="true" aria-labelledby="captcha-title">
+            <button class="captcha-close" id="captcha-close" aria-label="Close">×</button>
+            <h3 id="captcha-title">Quick check before you download</h3>
+            <p class="captcha-sub">Select every square with <strong>Australia's #1 uni.</strong> (We know you know.)</p>
+            <div class="captcha-grid" id="captcha-grid"></div>
+            <div class="captcha-actions">
+                <span class="captcha-msg" id="captcha-msg"></span>
+                <button class="captcha-verify" id="captcha-verify" type="button">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="globe.js"></script>
+    <script src="script.js"></script>
+    <script src="bg-stars.js"></script>
+    <script src="resume-captcha.js"></script>
+</body>
+
+</html>
